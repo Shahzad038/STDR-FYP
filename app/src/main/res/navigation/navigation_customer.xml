@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/first_fragment">
+
+    <fragment
+        android:id="@+id/first_fragment"
+        android:name="com.student.smartETailor.ui.Customer.CustomerHomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_customer_home">
+        <action
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/second_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/second_fragment"
+        android:name="com.student.smartETailor.ui.Customer.CustomerChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_customer_chat">
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/third_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/third_fragment"
+        android:name="com.student.smartETailor.ui.Customer.CustomerMeasurementFragment"
+        android:label="Measurements"
+        tools:layout="@layout/fragment_customer_measurements" />
+</navigation>

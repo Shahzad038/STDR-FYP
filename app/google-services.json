@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "173279053202",
+    "firebase_url": "https://smarttailer-6b0ca-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smarttailer-6b0ca",
+    "storage_bucket": "smarttailer-6b0ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173279053202:android:47fa35d43c40d6b49fad4b",
+        "android_client_info": {
+          "package_name": "com.student.smartETailor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173279053202-smcgbst54qma544d38doc5quq0033o8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQoZP5b8BLSKXe80_WL2IGOFJPHUhJYIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173279053202-smcgbst54qma544d38doc5quq0033o8m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
