@@ -1,10 +1,15 @@
 package com.student.smartETailor.adapters;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -12,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.student.smartETailor.R;
 import com.student.smartETailor.models.Measurement;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.ArrayList;
 
@@ -22,6 +28,19 @@ public class MeasurementsAdapter extends RecyclerView.Adapter<MeasurementsAdapte
 
     ArrayList<Measurement> selectedMeasurements;
 
+    public void updateMeasurements(ArrayList<Measurement> measurements) {
+        this.measurements = measurements;
+        this.notifyItemRangeChanged(0, measurements.size());
+    }
+
+    public ArrayList<Measurement> getSelectedMeasurements() {
+        return selectedMeasurements;
+    }
+
+    public void setSelectedMeasurements(ArrayList<Measurement> selectedMeasurements) {
+        this.selectedMeasurements = selectedMeasurements;
+    }
+
     public MeasurementsAdapter(Activity activity, ArrayList<Measurement> measurements, Boolean clickable) {
         this.context = activity;
         this.clickable = clickable;
@@ -29,6 +48,12 @@ public class MeasurementsAdapter extends RecyclerView.Adapter<MeasurementsAdapte
         this.selectedMeasurements = new ArrayList<>();
     }
 
+    public MeasurementsAdapter(Activity activity, Boolean clickable) {
+        this.context = activity;
+        this.clickable = clickable;
+        this.measurements = new ArrayList<>();
+        this.selectedMeasurements = new ArrayList<>();
+    }
 
     @Override
     public int getItemViewType(int position) {
