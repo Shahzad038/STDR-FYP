@@ -30,6 +30,8 @@ import com.student.smartETailor.R;
 import com.student.smartETailor.adapters.MeasurementsAdapter;
 import com.student.smartETailor.adapters.TailorAddDesignsListAdapter;
 import com.student.smartETailor.constants.Const;
+import com.student.smartETailor.interfaces.AddPaymentInterface;
+import com.student.smartETailor.interfaces.DesignPictureUploadingInterface;
 import com.student.smartETailor.models.Design;
 import com.student.smartETailor.models.Measurement;
 import com.student.smartETailor.utils.FBUtils;
@@ -64,6 +66,7 @@ public class AddDesignActivity extends AppCompatActivity {
         settings();
         fetchMeasurements();
 
+
         tvAddDesign.setOnClickListener(view -> {
             String name = etName.getText().toString();
             String desc = etDescription.getText().toString();
@@ -73,7 +76,7 @@ public class AddDesignActivity extends AppCompatActivity {
             } else if (desc.isEmpty()) {
                 etDescription.setError("Please enter the design description");
                 return;
-            } else if (0 <= 1) {
+            } else if (imagesAdapter.getItemCount() <= 1) {
                 Toast.makeText(this, "Please select some design images", Toast.LENGTH_SHORT).show();
                 return;
             } else if (measurementsAdapter.getSelectedMeasurements().size() <= 0) {
@@ -92,6 +95,24 @@ public class AddDesignActivity extends AppCompatActivity {
             design.setCustomization(checkCustomMeasurements.isChecked());
             design.setPrice(designCustomizePrice);
 
+            progressDialog.show();
+            FBUtils.getInstance().uploadDesigns(UID, imagesAdapter.getImages(), 0, new DesignPictureUploadingInterface() {
+                @Override
+                public void picUploaded(String picURL, int position) {
+                    design.addDesign(picURL);
+                }
+
+                @Override
+                public void picUploadingError() {
+                    progressDialog.dismiss();
+                    Toast.makeText(AddDesignActivity.this, "Something went wrong in uploading pic", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void picUploadingCompleted(int size) {
+                    progressDialog.dismiss();
+                    FBUtils.getInstance().uploadDesign(AddDesignActivity.this, design);
+                }
             });
 
         });
@@ -133,6 +154,8 @@ public class AddDesignActivity extends AppCompatActivity {
         RVImages = findViewById(R.id.rv_design_images);
         RVMeasurements = findViewById(R.id.rv_design_measurements);
         checkCustomMeasurements = findViewById(R.id.check_custom_measurements);
+        imagesAdapter = new TailorAddDesignsListAdapter(this);
+        RVImages.setAdapter(imagesAdapter);
         measurementsAdapter = new MeasurementsAdapter(this, true);
         RVMeasurements.setAdapter(measurementsAdapter);
 
@@ -146,7 +169,9 @@ public class AddDesignActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri uriImage = CropImage.getPickImageResultUri(this, data);
+            imagesAdapter.addNewImage(uriImage);
         }
     }
 }
