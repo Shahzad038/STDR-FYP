@@ -34,6 +34,7 @@ import com.student.smartETailor.interfaces.AddPaymentInterface;
 import com.student.smartETailor.interfaces.DesignPictureUploadingInterface;
 import com.student.smartETailor.models.Design;
 import com.student.smartETailor.models.Measurement;
+import com.student.smartETailor.utils.DialogsUtils;
 import com.student.smartETailor.utils.FBUtils;
 import com.student.smartETailor.utils.UsersUtils;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -44,7 +45,6 @@ import java.util.ArrayList;
 
 public class AddDesignActivity extends AppCompatActivity {
     private final String TAG = AddDesignActivity.class.getSimpleName();
-
     RecyclerView RVImages, RVMeasurements;
     TailorAddDesignsListAdapter imagesAdapter;
     MeasurementsAdapter measurementsAdapter;
@@ -66,6 +66,27 @@ public class AddDesignActivity extends AppCompatActivity {
         settings();
         fetchMeasurements();
 
+        checkCustomMeasurements.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    DialogsUtils.getInstance().showDialogForMeasurementPrice(AddDesignActivity.this, new AddPaymentInterface() {
+                        @Override
+                        public void paymentConfirmed(String payment) {
+                            designCustomizePrice = payment;
+                        }
+
+                        @Override
+                        public void onCancelled() {
+                            designCustomizePrice = "";
+                            checkCustomMeasurements.setChecked(false);
+                        }
+                    });
+                } else {
+                    designCustomizePrice = "";
+                }
+            }
+        });
 
         tvAddDesign.setOnClickListener(view -> {
             String name = etName.getText().toString();
