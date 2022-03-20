@@ -48,7 +48,6 @@ public class AddDesignActivity extends AppCompatActivity {
     RecyclerView RVImages, RVMeasurements;
     TailorAddDesignsListAdapter imagesAdapter;
     MeasurementsAdapter measurementsAdapter;
-
     EditText etName, etDescription;
     TextView tvAddDesign;
     CardView cardMeasurementsNA;

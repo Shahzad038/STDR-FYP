@@ -9,7 +9,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -25,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,10 +72,16 @@ public class SignupActivity extends AppCompatActivity {
         RL_SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fetchData();
-                if (isValid()) {
-                    signupUser();
+                // Before Registering user, Check his Internet Connection
+                if(isOnline()){
+                    fetchData();
+                    if (isValid()) {
+                        signupUser();
+                    }
+                } else {
+                    Toast.makeText(SignupActivity.this, "Please make sure you have an active internet connection", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -99,7 +108,7 @@ public class SignupActivity extends AppCompatActivity {
                         } else {
                             progressDialog.dismiss();
                             Log.e(TAG, task.getException().toString());
-                            Toast.makeText(SignupActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignupActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -143,6 +152,7 @@ public class SignupActivity extends AppCompatActivity {
                         AlerterUtils.getInstance().showAlertForCreateAccountError(SignupActivity.this);
                     }
                 });
+
     }
 
     private void setting() {
@@ -185,16 +195,19 @@ public class SignupActivity extends AppCompatActivity {
         if (URI_OF_SELECTED_IMAGE == null) {
             Toast.makeText(this, "Please select your profile pic", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (name.equals("")) {
+        } else if (TextUtils.isEmpty(name)) {
             etName.setError("Please enter your name");
             return false;
-        } else if (email.equals("")) {
+        } else if (TextUtils.isEmpty(email)) {
             etEmail.setError("Enter your email");
             return false;
-        } else if (contact.equals("")) {
+        }else if (!isValidEmail(email)) {
+            Toast.makeText(this, "Please provide a valid email", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (TextUtils.isEmpty(contact)) {
             etContact.setError("Contact detail missing");
             return false;
-        } else if (address.equals("")) {
+        } else if (TextUtils.isEmpty(address)) {
             etAddress.setError("Enter your address");
             return false;
         } else if (gender.equals("")) {
@@ -203,11 +216,12 @@ public class SignupActivity extends AppCompatActivity {
         } else if (pass.equals("")) {
             etPass.setError("Enter your password");
             return false;
-        } else if (pass.length() < 6) {
-            etPass.setError("Enter a stronger password");
-            return false;
-        } else if (confPass.equals("")) {
-            etConfPass.setError("Confirm your password");
+        }
+        else if(!validatePassword()){
+            return  false;
+        }
+        else if (confPass.equals("")) {
+            etConfPass.setError("Reenter your password");
             return false;
         } else if (!confPass.equals(pass)) {
             etConfPass.setError("Password didn't match");
@@ -256,4 +270,53 @@ public class SignupActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
     }
+
+    // Checks Network Connectivity
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        }
+        catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+
+        return false;
+    }
+
+    // Alphanumeric Password Validation
+    private boolean validatePassword() {
+        String passwordInput =  pass;
+
+        if (!passwordInput.matches(".*[0-9].*")) {
+            Toast.makeText(SignupActivity.this, "Password should contain at least 1 digit", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!passwordInput.matches(".*[a-z].*")) {
+            Toast.makeText(SignupActivity.this, "Password should contain at least 1 lower case letter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!passwordInput.matches(".*[A-Z].*")) {
+            Toast.makeText(SignupActivity.this, "Password should contain at least 1 upper case letter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!passwordInput.matches(".*[a-zA-Z].*")) {
+            Toast.makeText(SignupActivity.this, "Password should contain a letter", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!passwordInput.matches( ".{8,}")) {
+            Toast.makeText(SignupActivity.this, "Password should contain 8 characters", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    // Email Pattern Validation
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
 }
