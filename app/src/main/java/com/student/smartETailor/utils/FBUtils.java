@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,9 +57,39 @@ public class FBUtils {
     }
 
     public void uploadDesigns(String UID, ArrayList<Uri> designs,
-                              int uploadingItemNumber,
-                              DesignPictureUploadingInterface designPictureUploadingInterface) {
-
+                              int uploadingItemNumber, DesignPictureUploadingInterface designPictureUploadingInterface) {
+        if (designs.size() <= uploadingItemNumber) {
+            designPictureUploadingInterface.picUploadingCompleted(uploadingItemNumber);
+            return;
+        }
+        Uri currentDesignToUpload = designs.get(uploadingItemNumber);
+        if (currentDesignToUpload == null) {
+            int nextDesign = uploadingItemNumber + 1;
+            uploadDesigns(UID, designs, nextDesign, designPictureUploadingInterface);
+            return;
+        }
+        final StorageReference reference = FirebaseStorage.getInstance()
+                .getReference().child(Const.DB_DESIGNS + "/" + UID + "/" + System.currentTimeMillis());
+        reference.putFile(currentDesignToUpload)
+                .continueWithTask(task -> {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+                    return reference.getDownloadUrl();
+                }).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                try {
+                    designPictureUploadingInterface.picUploaded(task.getResult().toString(), uploadingItemNumber);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    int nextDesign = uploadingItemNumber + 1;
+                    uploadDesigns(UID, designs, nextDesign, designPictureUploadingInterface);
+                }
+            } else {
+                designPictureUploadingInterface.picUploadingError();
+            }
+        });
 
     }
 
