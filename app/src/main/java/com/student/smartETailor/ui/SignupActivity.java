@@ -35,6 +35,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.student.smartETailor.utils.AlerterUtils;
 import com.student.smartETailor.constants.Const;
 import com.student.smartETailor.R;
@@ -207,6 +210,9 @@ public class SignupActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(contact)) {
             etContact.setError("Contact detail missing");
             return false;
+        }else if (!isPhoneNumberValid(contact,"+92")) {
+            etContact.setError("Phone # should be in a proper format");
+            return false;
         } else if (TextUtils.isEmpty(address)) {
             etAddress.setError("Enter your address");
             return false;
@@ -317,6 +323,20 @@ public class SignupActivity extends AppCompatActivity {
     // Email Pattern Validation
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    public boolean isPhoneNumberValid(String phoneNumber, String countryCode) {
+        // NOTE: This should probably be a member variable.
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+
+        try {
+            Phonenumber.PhoneNumber numberProto = phoneUtil.parse(phoneNumber, countryCode);
+            return phoneUtil.isValidNumber(numberProto);
+        } catch (NumberParseException e) {
+            System.err.println("NumberParseException was thrown: " + e.toString());
+        }
+
+        return false;
     }
 
 }

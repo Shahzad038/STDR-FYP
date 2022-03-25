@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.student.smartETailor.R;
@@ -27,6 +28,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        // UserUtilsl utils =  new UserUtils();
         user = UsersUtils.getInstance(this).fetchUser();
         if (user == null) {
             Toast.makeText(this, "Something wrong!", Toast.LENGTH_SHORT).show();
@@ -51,7 +54,8 @@ public class ProfileActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setUserData(User user) {
         if (!user.getUID().equals("")) {
-            Glide.with(this).load(user.getImageURL()).centerCrop().into(civProfilePic);
+            Glide.with(this).load(user.getImageURL()).centerCrop()
+                    .placeholder(ContextCompat.getDrawable(this,R.drawable.profile_round)).into(civProfilePic);
             Log.i(TAG, "imageURL:" + user.getImageURL());
             tvUsername.setText(user.getName());
             tvAbout.setText(user.getAddress());
