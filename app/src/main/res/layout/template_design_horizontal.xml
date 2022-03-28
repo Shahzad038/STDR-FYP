@@ -4,6 +4,7 @@
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
+    android:id="@+id/card_design"
     android:elevation="5dp"
     app:cardBackgroundColor="@color/white">
 
@@ -29,11 +30,15 @@
                     android:src="@drawable/measurement_male" />
 
                 <TextView
+                    android:id="@+id/tv_design_customizable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/bg_customizable"
                     android:padding="3dp"
                     android:text="Customizable"
@@ -53,7 +58,10 @@
                 android:id="@+id/tv_design_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_toStartOf="@id/tv_design_price"
                 android:padding="3dp"
                 android:text="Design Name"
@@ -65,7 +73,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:padding="3dp"
                 android:text="50 $"
                 android:textColor="@color/black"
