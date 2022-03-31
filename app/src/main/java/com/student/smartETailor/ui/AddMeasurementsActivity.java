@@ -90,10 +90,13 @@ public class AddMeasurementsActivity extends AppCompatActivity {
     }
 
     private boolean validateUserInputData() {
-        if (neck.isEmpty()) {
+        if(neck.equals(".") || shoulder.equals(".") || sleeve.equals(".") || chest.equals(".") || waist.equals(".") || hips.equals(".") || inseam.equals(".") || thigh.equals(".")){
+            Toast.makeText(this,"Please enter Valid measurement (0 to 9)",Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (neck.isEmpty()) {
             etNeck.setError("Please enter this measurement");
             return false;
-        } else if (shoulder.isEmpty()) {
+        }else if (shoulder.isEmpty()) {
             etShoulders.setError("Please enter this measurement");
             return false;
         } else if (sleeve.isEmpty()) {

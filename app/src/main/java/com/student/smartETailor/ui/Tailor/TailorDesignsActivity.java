@@ -1,13 +1,14 @@
 package com.student.smartETailor.ui.Tailor;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,6 +18,7 @@ import com.student.smartETailor.R;
 import com.student.smartETailor.adapters.TailorDesignAdapter;
 import com.student.smartETailor.constants.Const;
 import com.student.smartETailor.models.Design;
+import com.student.smartETailor.ui.fragments.TailorFragment;
 import com.student.smartETailor.utils.UsersUtils;
 
 import java.util.ArrayList;

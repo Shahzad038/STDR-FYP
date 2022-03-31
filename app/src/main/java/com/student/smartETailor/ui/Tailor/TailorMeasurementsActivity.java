@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.student.smartETailor.R;
 import com.student.smartETailor.adapters.MeasurementsAdapter;
-/*import com.student.smartETailor.adapters.TailorDesignAdapter;*/
+import com.student.smartETailor.adapters.TailorDesignAdapter;
 import com.student.smartETailor.constants.Const;
 import com.student.smartETailor.models.Design;
 import com.student.smartETailor.models.Measurement;

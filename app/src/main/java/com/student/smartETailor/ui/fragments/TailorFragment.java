@@ -58,7 +58,10 @@ public class TailorFragment extends Fragment {
             AlerterUtils.getInstance().notImplemented(requireActivity());
         });
 
-
+        llDesgins.setOnClickListener(view -> {
+            AlerterUtils.getInstance().showModifiedAlert(requireActivity(),"Coming Soon after a few fixes","Working on it...");
+           // startActivity(new Intent(requireActivity(), TailorDesignsActivity.class));
+        });
 
         llMeasurements.setOnClickListener(view -> {
             startActivity(new Intent(requireActivity(), TailorMeasurementsActivity.class));

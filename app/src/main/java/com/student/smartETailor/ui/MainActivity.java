@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.student.smartETailor.R;
 import com.student.smartETailor.constants.Const;
 import com.student.smartETailor.models.User;
+import com.student.smartETailor.ui.fragments.BlankFragment;
 import com.student.smartETailor.ui.fragments.CustomerFragment;
 import com.student.smartETailor.ui.fragments.RiderFragment;
 import com.student.smartETailor.ui.fragments.TailorFragment;
@@ -54,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 mFragment = new RiderFragment();
                 break;
             case Const.USER_TYPE_CUSTOMER:
-                mFragment = new CustomerFragment();
+              //  mFragment = new CustomerFragment();
+                mFragment = new BlankFragment();
                 break;
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

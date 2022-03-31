@@ -8,10 +8,14 @@
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.19583333333333333" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/drawable/tabs_background.xml" value="0.19583333333333333" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/drawable/tabs_background_orders.xml" value="0.19583333333333333" />
-        <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/activity_add_design.xml" value="0.1796875" />
+        <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/activity_add_design.xml" value="0.1" />
+        <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/activity_add_measurements.xml" value="0.11231884057971014" />
+        <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/activity_orders.xml" value="0.1796875" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/activity_signup.xml" value="0.1796875" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/activity_tailor_designs.xml" value="0.1796875" />
+        <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/fragment_blank.xml" value="0.1796875" />
+        <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/fragment_customer.xml" value="0.1" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/fragment_customer_chat.xml" value="0.1796875" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/fragment_customer_home.xml" value="0.1796875" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/fragment_orders.xml" value="0.12604166666666666" />

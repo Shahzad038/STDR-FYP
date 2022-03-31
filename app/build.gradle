@@ -59,9 +59,8 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.8'
-//    implementation 'com.roughike:bottom-bar:2.3.1'
-
     implementation 'com.android.support:multidex:1.0.3'
-
+    implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.4.2'
 }
