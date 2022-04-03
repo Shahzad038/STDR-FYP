@@ -63,4 +63,8 @@ dependencies {
     implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.4.2'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
+    implementation 'com.hbb20:ccp:2.2.9'
+
+
 }

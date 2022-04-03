@@ -2,6 +2,7 @@ package com.student.smartETailor.ui;
 
 
 import android.Manifest;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,7 +10,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -24,6 +27,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +44,8 @@ import com.google.firebase.storage.UploadTask;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+import com.hbb20.CountryCodePicker;
+import com.student.smartETailor.adapters.AdapterCityList;
 import com.student.smartETailor.utils.AlerterUtils;
 import com.student.smartETailor.constants.Const;
 import com.student.smartETailor.R;
@@ -47,6 +55,10 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -54,7 +66,9 @@ public class SignupActivity extends AppCompatActivity {
     private final String TAG = SignupActivity.class.getSimpleName();
     private final int PERMISSION_REQUEST_CODE = 11;
 
-    EditText etEmail, etPass, etConfPass, etName, etContact, etAddress;
+
+    EditText etEmail, etPass, etConfPass, etName, etAddress;
+    public static EditText etContact;
     Spinner spnrUserType;
     RelativeLayout RL_SignUp;
     CircleImageView civPic;
@@ -64,6 +78,16 @@ public class SignupActivity extends AppCompatActivity {
     Uri URI_OF_SELECTED_IMAGE, URI_URL_OF_IMAGE;
 
     ProgressDialog progressDialog;
+    public static TextView tvSelectCountry;
+
+
+    // Dialog to select City
+    private Dialog mDialog;
+    private SearchView searchView;
+    private RecyclerView rvselectcity;
+    private AdapterCityList adapter;
+    List<String> citiesList = new ArrayList<>();
+    public static CountryCodePicker ccp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +96,12 @@ public class SignupActivity extends AppCompatActivity {
         setting();
         Utils.getInstance().requestAllPermissions(this);
 
+
         RL_SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Before Registering user, Check his Internet Connection
-                if(isOnline()){
+                if (isOnline()) {
                     fetchData();
                     if (isValid()) {
                         signupUser();
@@ -94,6 +119,87 @@ public class SignupActivity extends AppCompatActivity {
                 picImageFromGallery();
             }
         });
+
+        // Make a string list of cities
+        List<String> countries = Arrays.asList(new String[]{"Pakistan\t(+92)", "India\t(+91)", "US \t(+1)"});
+        citiesList.addAll(new ArrayList<>(countries));
+
+
+        tvSelectCountry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog = new Dialog(SignupActivity.this);
+                mDialog.setContentView(R.layout.dialog_select_country);
+                mDialog.setCancelable(false);
+
+
+                searchView = mDialog.findViewById(R.id.search_bar);
+                rvselectcity = mDialog.findViewById(R.id.rv_select_city);
+
+                adapter = new AdapterCityList(SignupActivity.this, citiesList, mDialog);
+
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SignupActivity.this);
+                rvselectcity.setLayoutManager(mLayoutManager);
+
+                rvselectcity.setAdapter(adapter);
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        if (adapter != null)
+                            adapter.getFilter().filter(newText);
+
+                        return false;
+                    }
+                });
+
+
+                mDialog.show();
+
+
+            }
+        });
+
+
+        tvSelectCountry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String text = tvSelectCountry.getText().toString();
+
+                switch (text) {
+                    case "+92":
+                        ccp.setCountryForPhoneCode(Integer.parseInt("+92"));
+                        etContact.setHint("3XX XXXXXXX");
+                        break;
+                    case "+91":
+                        ccp.setCountryForPhoneCode(Integer.parseInt("+91"));
+                        etContact.setHint("XXX XXX XXXX");
+                        break;
+                    case "+1":
+                        ccp.setCountryForPhoneCode(Integer.parseInt("+1"));
+                        etContact.setHint("XXX-XXX-XXXX");
+                        break;
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        tvSelectCountry.setText("+92");
 
 
     }
@@ -163,9 +269,13 @@ public class SignupActivity extends AppCompatActivity {
         etPass = findViewById(R.id.et_signup_password);
         etConfPass = findViewById(R.id.et_signup_confirm_password);
         RL_SignUp = findViewById(R.id.RL_signup);
+        ccp = (CountryCodePicker) findViewById(R.id.ccpp);
+        tvSelectCountry = findViewById(R.id.ccp);
+
 
         etName = findViewById(R.id.et_signup_detail_name);
         etContact = findViewById(R.id.et_signup_detail_contact);
+        ccp.registerCarrierNumberEditText(etContact);
         etAddress = findViewById(R.id.et_signup_detail_address);
 
         civPic = findViewById(R.id.civ_signup_pic);
@@ -204,14 +314,31 @@ public class SignupActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(email)) {
             etEmail.setError("Enter your email");
             return false;
-        }else if (!isValidEmail(email)) {
+        } else if (!isValidEmail(email)) {
             Toast.makeText(this, "Please provide a valid email", Toast.LENGTH_SHORT).show();
             return false;
         } else if (TextUtils.isEmpty(contact)) {
             etContact.setError("Contact detail missing");
             return false;
-        }else if (!isPhoneNumberValid(contact,"+92")) {
-            etContact.setError("Phone # should be in a proper format");
+        } else if (!ccp.isValidFullNumber()) {
+            String text = tvSelectCountry.getText().toString();
+            switch (text) {
+                case "+92":
+                    ccp.setCountryForPhoneCode(Integer.parseInt("+92"));
+                    etContact.setError("incorrect number\nPlease use this format (3XX XXXXXXX)" +
+                            "\nNumber length = 10");
+
+                    break;
+                case "+91":
+                    etContact.setError("incorrect number\nPlease use this format (XXX XXX XXXX)" +
+                            "\nNumber length = 10");
+                    break;
+                case "+1":
+                    etContact.setError("incorrect number\nPlease use this format (XXX-XXX-XXXX)" +
+                            "\nNumber length = 10");
+                    break;
+
+            }
             return false;
         } else if (TextUtils.isEmpty(address)) {
             etAddress.setError("Enter your address");
@@ -222,11 +349,9 @@ public class SignupActivity extends AppCompatActivity {
         } else if (pass.equals("")) {
             etPass.setError("Enter your password");
             return false;
-        }
-        else if(!validatePassword()){
-            return  false;
-        }
-        else if (confPass.equals("")) {
+        } else if (!validatePassword()) {
+            return false;
+        } else if (confPass.equals("")) {
             etConfPass.setError("Reenter your password");
             return false;
         } else if (!confPass.equals(pass)) {
@@ -282,40 +407,37 @@ public class SignupActivity extends AppCompatActivity {
         Runtime runtime = Runtime.getRuntime();
         try {
             Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-            int     exitValue = ipProcess.waitFor();
+            int exitValue = ipProcess.waitFor();
             return (exitValue == 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
 
         return false;
     }
 
     // Alphanumeric Password Validation
     private boolean validatePassword() {
-        String passwordInput =  pass;
+        String passwordInput = pass;
 
         if (!passwordInput.matches(".*[0-9].*")) {
             Toast.makeText(SignupActivity.this, "Password should contain at least 1 digit", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else if (!passwordInput.matches(".*[a-z].*")) {
+        } else if (!passwordInput.matches(".*[a-z].*")) {
             Toast.makeText(SignupActivity.this, "Password should contain at least 1 lower case letter", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else if (!passwordInput.matches(".*[A-Z].*")) {
+        } else if (!passwordInput.matches(".*[A-Z].*")) {
             Toast.makeText(SignupActivity.this, "Password should contain at least 1 upper case letter", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else if (!passwordInput.matches(".*[a-zA-Z].*")) {
+        } else if (!passwordInput.matches(".*[a-zA-Z].*")) {
             Toast.makeText(SignupActivity.this, "Password should contain a letter", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else if (!passwordInput.matches( ".{8,}")) {
+        } else if (!passwordInput.matches(".{8,}")) {
             Toast.makeText(SignupActivity.this, "Password should contain 8 characters", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
