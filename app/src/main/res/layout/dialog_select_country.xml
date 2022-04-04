@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_corner_white"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:clipToPadding="false">
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/primary_dark"
+     >
+
+        <TextView
+            android:id="@+id/sv_search_city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Select Country"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:iconifiedByDefault="true"
+        android:background="@drawable/bg_edit_text"
+        android:animateLayoutChanges="true"
+        app:queryHint="Search City"
+        app:queryBackground="@android:color/transparent"
+        app:searchHintIcon="@null"
+        app:closeIcon="@drawable/ic_close"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="35dp"
+        app:searchIcon="@drawable/ic_search"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_select_city"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title"
+        android:layout_marginTop="30dp" />
+    </RelativeLayout>
+
