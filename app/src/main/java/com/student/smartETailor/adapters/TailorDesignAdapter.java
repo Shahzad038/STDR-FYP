@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.student.smartETailor.R;
 import com.student.smartETailor.models.Design;
+import com.student.smartETailor.ui.DesignDetailsActivity;
+
 import java.util.ArrayList;
 
 public class TailorDesignAdapter extends RecyclerView.Adapter<TailorDesignAdapter.MyViewHolder> {
@@ -67,7 +69,6 @@ public class TailorDesignAdapter extends RecyclerView.Adapter<TailorDesignAdapte
             holder.tvCustomizable.setVisibility(View.GONE);
             holder.tvPrice.setText(design.getMeasurements().get(0).getPayment()+"$");
         }
-
     }
 
     @Override
