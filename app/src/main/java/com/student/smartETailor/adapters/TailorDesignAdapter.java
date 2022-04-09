@@ -69,6 +69,8 @@ public class TailorDesignAdapter extends RecyclerView.Adapter<TailorDesignAdapte
             holder.tvCustomizable.setVisibility(View.GONE);
             holder.tvPrice.setText(design.getMeasurements().get(0).getPayment()+"$");
         }
+
+
     }
 
     @Override

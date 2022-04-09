@@ -16,7 +16,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.student.smartETailor.R;
+import com.student.smartETailor.interfaces.AddPaymentInterface;
 import com.student.smartETailor.models.Measurement;
+import com.student.smartETailor.utils.DialogsUtils;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.ArrayList;
@@ -79,16 +81,37 @@ public class MeasurementsAdapter extends RecyclerView.Adapter<MeasurementsAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         int itemPosition = position;
         Measurement measurement = measurements.get(itemPosition);
-        holder.tvNeck.setText("Neck: \t\t\t" + measurement.getNeck());
-        holder.tvShoulders.setText("Shoulders: \t" + measurement.getShoulders());
-        holder.tvSleeves.setText("Sleeves: \t\t" + measurement.getSleeves());
-        holder.tvChest.setText("Chest: \t\t\t" + measurement.getChest());
-        holder.tvWaist.setText("Waist: \t\t" + measurement.getWaist());
-        holder.tvHips.setText("Hips: \t\t" + measurement.getHips());
-        holder.tvInseam.setText("Inseam: \t" + measurement.getNeck());
-        holder.tvThigh.setText("Thigh: \t\t" + measurement.getThigh());
+        holder.tvNeck.setText("Neck: \t\t\t" + measurement.getNeck()+"inches");
+        holder.tvShoulders.setText("Shoulders: \t" + measurement.getShoulders()+"inches");
+        holder.tvSleeves.setText("Sleeves: \t\t" + measurement.getSleeves()+"inches");
+        holder.tvChest.setText("Chest: \t\t\t" + measurement.getChest()+"inches");
+        holder.tvWaist.setText("Waist: \t\t" + measurement.getWaist()+"inches");
+        holder.tvHips.setText("Hips: \t\t" + measurement.getHips()+"inches");
+        holder.tvInseam.setText("Inseam: \t" + measurement.getNeck()+"inches");
+        holder.tvThigh.setText("Thigh: \t\t" + measurement.getThigh()+"inches");
 
+        if (clickable)
+            holder.card.setOnClickListener(view -> {
+                if (clickable) {
+                    if (measurement.getPayment().isEmpty()) {
+                        DialogsUtils.getInstance().showDialogForMeasurementPrice(context, new AddPaymentInterface() {
+                            @Override
+                            public void paymentConfirmed(String payment) {
+                                measurement.setPayment(payment);
+                                selectedMeasurements.add(measurement);
+                                MeasurementsAdapter.this.notifyItemChanged(itemPosition);
+                            }
 
+                            @Override
+                            public void onCancelled() {
+
+                            }
+                        });
+                    } else {
+                        Toast.makeText(context, "Already payment selected", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
     }
 
     @Override

@@ -14,6 +14,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -63,6 +65,22 @@ public class AddDesignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_design);
 
         settings();
+
+        etName.setFilters(new InputFilter[]{
+                new InputFilter() {
+                    @Override
+                    public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                        if (charSequence.equals("")) {
+                            return charSequence;
+                        }
+                        if (charSequence.toString().matches("[a-zA-Z ]+")) {
+                            return charSequence;
+                        }
+                        return "";
+                    }
+                }
+        });
+
         fetchMeasurements();
 
         checkCustomMeasurements.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

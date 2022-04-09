@@ -1,6 +1,8 @@
 package com.student.smartETailor.models;
 
-public class Measurement {
+import java.io.Serializable;
+
+public class Measurement implements Serializable {
     private String measurementID;
     private String neck, shoulders, sleeves, chest, waist, hips, inseam, thigh;
     private String payment;

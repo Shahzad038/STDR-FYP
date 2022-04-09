@@ -34,9 +34,15 @@
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/template_measurement.xml" value="0.1796875" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/template_measurement_selected.xml" value="0.1796875" />
         <entry key="..\:/7th Semester/FYP/SmartETailorDesignRecommender/app/src/main/res/layout/template_order.xml" value="0.1796875" />
+        <entry key="..\:/SmartETailorDesignRecommender/app/src/main/res/drawable-v24/bg_btn_tailor_add.xml" value="0.115" />
+        <entry key="..\:/SmartETailorDesignRecommender/app/src/main/res/drawable/bg_btn_tailor_add.xml" value="0.2115" />
+        <entry key="..\:/SmartETailorDesignRecommender/app/src/main/res/layout/activity_add_design.xml" value="0.1" />
+        <entry key="..\:/SmartETailorDesignRecommender/app/src/main/res/layout/activity_select_one_measurements.xml" value="0.20416666666666666" />
+        <entry key="..\:/SmartETailorDesignRecommender/app/src/main/res/layout/activity_tailor_designs.xml" value="0.20416666666666666" />
+        <entry key="..\:/SmartETailorDesignRecommender/app/src/main/res/layout/fragment_tailor.xml" value="0.1" />
         <entry key="..\:/Users/waqas/AndroidStudioProjects/STDR-FYP/app/src/main/res/drawable/back_to_home_button.xml" value="0.1245" />
         <entry key="..\:/Users/waqas/AndroidStudioProjects/STDR-FYP/app/src/main/res/drawable/profile_back_button.xml" value="0.1245" />
-T        <entry key="..\:/Users/waqas/AndroidStudioProjects/STDR-FYP/app/src/main/res/layout/activity_design_details.xml" value="0.184375" />
+        <entry key="..\:/Users/waqas/AndroidStudioProjects/STDR-FYP/app/src/main/res/layout/activity_design_details.xml" value="0.184375" />
         <entry key="..\:/Users/waqas/AndroidStudioProjects/STDR-FYP/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/waqas/AndroidStudioProjects/STDR-FYP/app/src/main/res/layout/activity_profile.xml" value="0.184375" />
         <entry key="..\:/Users/waqas/AndroidStudioProjects/STDR-FYP/app/src/main/res/layout/activity_tailor_designs.xml" value="0.1" />

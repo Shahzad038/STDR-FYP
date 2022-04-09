@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 mFragment = new RiderFragment();
                 break;
             case Const.USER_TYPE_CUSTOMER:
-              //  mFragment = new CustomerFragment();
+                //  mFragment = new CustomerFragment();
                 mFragment = new BlankFragment();
                 break;
         }

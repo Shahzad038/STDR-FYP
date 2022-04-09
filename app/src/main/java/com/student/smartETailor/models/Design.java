@@ -1,8 +1,9 @@
 package com.student.smartETailor.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Design {
+public class Design  implements Serializable {
     private String designID, tailorID, name, description;
     private ArrayList<Measurement> measurements;
     private boolean customization;
@@ -18,7 +19,17 @@ public class Design {
         customization = false;
     }
 
-
+    public Design(String designID, String tailorID, String name, String description,
+                  ArrayList<Measurement> measurements, Boolean customization,String price, ArrayList<String> designs) {
+        this.designID = designID;
+        this.tailorID = tailorID;
+        this.price = price;
+        this.customization = customization;
+        this.name = name;
+        this.description = description;
+        this.measurements = measurements;
+        this.designs = designs;
+    }
 
     public String getPrice() {
         return price;

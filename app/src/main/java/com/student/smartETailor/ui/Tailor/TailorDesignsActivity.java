@@ -76,6 +76,6 @@ public class TailorDesignsActivity extends AppCompatActivity {
         rvDesigns = findViewById(R.id.RV_designs);
         designs = new ArrayList<>();
         adapter = new TailorDesignAdapter(this, designs);
-        rvDesigns.setAdapter(adapter);
+       // rvDesigns.setAdapter(adapter);
     }
 }
