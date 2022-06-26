@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_sms"
+        app:stackFromEnd="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/RL_send_sms"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+    <RelativeLayout
+        android:id="@+id/RL_send_sms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:padding="7dp">
+
+        <EditText
+            android:id="@+id/et_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/img_sms_send"
+            android:background="@drawable/background_edittext"
+            android:hint="Write Message..."
+            android:inputType="textMultiLine" />
+
+        <ImageView
+            android:id="@+id/img_sms_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_send_24_green" />
+    </RelativeLayout>
+
+</RelativeLayout>

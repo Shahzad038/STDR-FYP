@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="1dp"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/primary_dark">
+
+        <TextView
+            android:id="@+id/sv_search_city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppinsmedium"
+            android:gravity="center"
+            android:text="User Details"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/machine_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="User Name" />
+
+
+    <TextView
+
+        android:id="@+id/et_company_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/machine_title"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Muhammmad Hanzilah"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/category_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_company_name"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Type" />
+
+    <TextView
+
+        android:id="@+id/et_customer_full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_id"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Muhammmad Hanzilah"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/et_email_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_customer_full_name"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Email" />
+
+
+    <TextView
+
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_email_text"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Muhammmad Hanzilah"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/machine_made"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_email"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="Phone Number" />
+
+    <TextView
+
+        android:id="@+id/llMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/machine_made"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Muhammmad Hanzilah"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/et_address_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llMobile"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Address" />
+
+    <TextView
+
+        android:id="@+id/et_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_address_text"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Muhammmad Hanzilah"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/et_gst_no_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_address"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="User Id" />
+
+    <TextView
+
+        android:id="@+id/et_gst_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_gst_no_txt"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Muhammmad Hanzilah"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_inquiry_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_gst_no"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Inquiry" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/et_inquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_inquiry_txt"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="Muhammmad Hanzilah"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"/>
+
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

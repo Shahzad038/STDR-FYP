@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_measurement"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:elevation="5dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+ 
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+
+        android:background="@color/primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="7dp">
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_neck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_shoulders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_sleeves"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_chest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="7dp">
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_waist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_hips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_inseam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+
+             <TextView
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_measurement_thigh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="1"
+                android:padding="3dp"
+                 android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Neck" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

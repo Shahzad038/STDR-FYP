@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.ThreeBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:padding="7dp"
+        app:SpinKit_Color="@color/primary" />
+
+    <RelativeLayout
+        android:id="@+id/RL_bsd_tailor_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_bsd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:civ_border_color="@color/silver"
+            app:civ_border_width="2dp"
+            tools:src="@drawable/ic_baseline_person_24" />
+
+        <TextView
+            android:id="@+id/tv_bsd_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/civ_bsd"
+            android:padding="3dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Tailor" />
+
+        <TextView
+            android:id="@+id/tv_bsd_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_bsd_name"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/civ_bsd"
+            android:padding="3dp"
+            android:textSize="14sp"
+            tools:text="Contact" />
+
+        <TextView
+            android:id="@+id/tv_bsd_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_bsd_contact"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/civ_bsd"
+            android:padding="3dp"
+            android:textSize="14sp"
+            tools:text="Address" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_bsd_tailor_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RL_bsd_tailor_header"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_btn_place_order"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Contact"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

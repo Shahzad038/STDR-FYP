@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.PaymentModeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical">
+            <com.kofigyan.stateprogressbar.StateProgressBar
+                android:id="@+id/your_state_progress_bar_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="true"
+                app:spb_currentStateDescriptionColor="@color/black"
+                app:spb_currentStateNumber="one"
+                app:spb_maxStateNumber="two"
+                app:spb_stateBackgroundColor="#BDBDBD"
+                app:spb_stateDescriptionColor="#808080"
+                app:spb_stateForegroundColor="@color/primary_dark"
+                app:spb_stateNumberBackgroundColor="#808080"
+                app:spb_stateNumberForegroundColor="#eeeeee" />
+
+        </LinearLayout>
+        <!-- Weight 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1.8"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"
+                android:text="Payment Mode"
+                android:gravity="center_horizontal">
+
+            </TextView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#DADADA"
+                android:elevation="4dp"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_jazz_cash"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/jazzcash" />
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@id/img_jazz_cash"
+                        android:id="@+id/txt_hosp_name"
+                        android:layout_width="match_parent"
+                        android:text="JazzCash"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="30dp"
+                android:id="@+id/card2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#DADADA"
+                android:elevation="4dp"
+                app:cardCornerRadius="5dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_jaz_cash"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/cod" />
+
+                    <TextView
+                        android:id="@+id/txt_osp_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@id/img_jaz_cash"
+                        android:text="Cash On Delivery"
+                        android:textColor="@color/black" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <Button
+                android:id="@+id/btn_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/primary_dark"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="Continue" />
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
