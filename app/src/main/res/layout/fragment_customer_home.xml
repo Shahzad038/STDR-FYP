@@ -17,7 +17,7 @@
         app:SpinKit_Color="@color/white"/>
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -29,6 +29,9 @@
             android:visibility="gone">
 
             <TextView
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/poppinsregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -47,6 +50,10 @@
                 tools:listitem="@layout/template_design_horizontal" />
 
             <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/poppinsregular"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -55,6 +62,7 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
                 android:id="@+id/rv_designs_featured"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,9 +73,12 @@
                 tools:listitem="@layout/template_design_horizontal" />
 
             <TextView
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/poppinsregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textColor="@color/white"
                 android:text="Recommended"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -83,6 +94,6 @@
                 tools:listitem="@layout/template_design" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

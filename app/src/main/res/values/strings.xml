@@ -9,6 +9,5 @@
     <string-array name="user_types">
         <item>Customer</item>
         <item>Tailor</item>
-        <item>Rider</item>
     </string-array>
 </resources>

@@ -70,8 +70,13 @@ public class UsersUtils {
     }
 
     public void signOut() {
-        User user = new User();
-        save(user);
+//        User user = new User();
+//        save(user);
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 
 }

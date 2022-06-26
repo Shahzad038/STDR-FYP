@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.FirebaseDatabase;
 import com.student.smartETailor.R;
 import com.student.smartETailor.constants.Const;
+import com.student.smartETailor.interfaces.AddPaymentInterface;
 import com.student.smartETailor.models.Measurement;
 import com.student.smartETailor.utils.UsersUtils;
 
@@ -96,52 +97,52 @@ public class AddMeasurementsActivity extends AppCompatActivity {
                 etNeck.setError("Please enter this measurement");
                 isValid = false;
             } else if (Double.parseDouble(neck) <= 0 || neck.trim().equals(".")) {
-                Toast.makeText(this, "neck must be greater than 0", Toast.LENGTH_SHORT).show();
+                etNeck.setError("neck must be greater than 0");
                 isValid = false;
             } else if (shoulder.isEmpty()) {
                 etShoulders.setError("Please enter this measurement");
                 isValid = false;
-            }else if (Double.parseDouble(shoulder) <= 0|| shoulder.trim().equals(".")) {
-                Toast.makeText(this, "shoulder must be greater than 0", Toast.LENGTH_SHORT).show();
+            } else if (Double.parseDouble(shoulder) <= 0 || shoulder.trim().equals(".")) {
+                etShoulders.setError("shoulder must be greater than 0");
                 isValid = false;
-            }  else if (sleeve.isEmpty()) {
+            } else if (sleeve.isEmpty()) {
                 etSleeves.setError("Please enter this measurement");
                 isValid = false;
-            }else if (Double.parseDouble(sleeve) <= 0 || sleeve.trim().equals(".")) {
-                Toast.makeText(this, "sleeve must be greater than 0", Toast.LENGTH_SHORT).show();
+            } else if (Double.parseDouble(sleeve) <= 0 || sleeve.trim().equals(".")) {
+                etSleeves.setError("sleeve must be greater than 0");
                 isValid = false;
-            }  else if (chest.isEmpty() ) {
+            } else if (chest.isEmpty()) {
                 etChest.setError("Please enter this measurement");
                 isValid = false;
-            }else if (Double.parseDouble(chest) <= 0|| chest.trim().equals(".")) {
-                Toast.makeText(this, "chest must be greater than 0", Toast.LENGTH_SHORT).show();
+            } else if (Double.parseDouble(chest) <= 0 || chest.trim().equals(".")) {
+                etChest.setError("chest must be greater than 0");
                 isValid = false;
-            }  else if (waist.isEmpty()) {
+            } else if (waist.isEmpty()) {
                 etWaist.setError("Please enter this measurement");
                 isValid = false;
-            }else if (Double.parseDouble(waist) <= 0|| waist.trim().equals(".")) {
-                Toast.makeText(this, "waist must be greater than 0", Toast.LENGTH_SHORT).show();
+            } else if (Double.parseDouble(waist) <= 0 || waist.trim().equals(".")) {
+                etWaist.setError( "waist must be greater than 0");
                 isValid = false;
-            }  else if (hips.isEmpty()) {
+            } else if (hips.isEmpty()) {
                 etHips.setError("Please enter this measurement");
                 isValid = false;
-            }else if (Double.parseDouble(hips) <= 0 || hips.trim().equals(".")) {
-                Toast.makeText(this, "hips must be greater than 0", Toast.LENGTH_SHORT).show();
+            } else if (Double.parseDouble(hips) <= 0 || hips.trim().equals(".")) {
+                etHips.setError("hips must be greater than 0");
                 isValid = false;
-            }  else if (inseam.isEmpty()) {
+            } else if (inseam.isEmpty()) {
                 etInseam.setError("Please enter this measurement");
                 isValid = false;
-            }else if (Double.parseDouble(inseam) <= 0  || inseam.trim().equals(".")) {
-                Toast.makeText(this, "inseam must be greater than 0", Toast.LENGTH_SHORT).show();
+            } else if (Double.parseDouble(inseam) <= 0 || inseam.trim().equals(".")) {
+                etInseam.setError( "inseam must be greater than 0");
                 isValid = false;
-            }  else if (thigh.isEmpty()) {
+            } else if (thigh.isEmpty()) {
                 etThigh.setError("Please enter this measurement");
                 isValid = false;
-            }else if (Double.parseDouble(thigh) <= 0 || thigh.trim().equals(".")) {
-                Toast.makeText(this, "thigh must be greater than 0", Toast.LENGTH_SHORT).show();
+            } else if (Double.parseDouble(thigh) <= 0 || thigh.trim().equals(".")) {
+                etThigh.setError( "thigh must be greater than 0");
                 isValid = false;
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             isValid = false;
             Toast.makeText(this, "please enter a valid number", Toast.LENGTH_SHORT).show();
         }

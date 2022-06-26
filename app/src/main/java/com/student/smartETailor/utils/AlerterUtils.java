@@ -55,6 +55,10 @@ public class AlerterUtils {
         showModifiedAlert(activity, "Coming soon...", "This feature is not available yet.");
     }
 
+    public void notImplemented(Activity activity, String featureName) {
+        showModifiedAlert(activity, "Coming soon...", featureName + " is not available yet.");
+    }
+
 
     public void showAlertForError(Activity activity) {
         showAlert(activity, "Error!", "Something went wrong. Please try again!", null, R.color.primary_dark, 3000);
@@ -63,6 +67,5 @@ public class AlerterUtils {
     public void showAlertForProfilePicNotUpload(Activity activity) {
         showModifiedAlert(activity, "Profile picture", "Profile pic not uploaded");
     }
-
 
 }

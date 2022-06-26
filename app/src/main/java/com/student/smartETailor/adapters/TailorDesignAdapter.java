@@ -61,16 +61,27 @@ public class TailorDesignAdapter extends RecyclerView.Adapter<TailorDesignAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Design design = designs.get(position);
-        Glide.with(context).load(design.getDesigns().get(0)).centerCrop().into(holder.imgDesign);
+        if (design.getDesigns().size() > 0) {
+            Glide.with(context).load(design.getDesigns().get(0)).centerCrop().into(holder.imgDesign);
+        }
+
         holder.tvName.setText(design.getName());
         if (design.isCustomization()) {
             holder.tvPrice.setText(design.getPrice() + "$");
         } else {
             holder.tvCustomizable.setVisibility(View.GONE);
-            holder.tvPrice.setText(design.getMeasurements().get(0).getPayment()+"$");
+            if (design.getDesigns().size() > 0) {
+                holder.tvPrice.setText(design.getMeasurements().get(0).getPayment() + "$");
+            }
         }
 
 
+
+        holder.cardDesign.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DesignDetailsActivity.class);
+            intent.putExtra(DesignDetailsActivity.EXTRA_DESIGN, design);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -81,7 +92,7 @@ public class TailorDesignAdapter extends RecyclerView.Adapter<TailorDesignAdapte
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imgDesign;
         CardView cardDesign;
-        TextView tvName, tvPrice, tvCustomizable;
+        private TextView tvName, tvPrice, tvCustomizable ;
 
         public MyViewHolder(@NonNull View v) {
             super(v);
@@ -90,6 +101,7 @@ public class TailorDesignAdapter extends RecyclerView.Adapter<TailorDesignAdapte
             tvName = v.findViewById(R.id.tv_design_name);
             tvPrice = v.findViewById(R.id.tv_design_price);
             tvCustomizable = v.findViewById(R.id.tv_design_customizable);
+
         }
     }
 }

@@ -1,7 +1,13 @@
 package com.student.smartETailor.ui.fragments;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,11 +21,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -33,8 +44,10 @@ import com.student.smartETailor.ui.OrderActivity;
 import com.student.smartETailor.utils.UsersUtils;
 import com.student.smartETailor.utils.Utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -48,6 +61,8 @@ public class CustomerFragment extends Fragment {
     SectionsPagerAdapter sectionsPagerAdapter;
     ViewPager viewPager;
     TabLayout tabs;
+    FusedLocationProviderClient fusedLocationProviderClient;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +72,7 @@ public class CustomerFragment extends Fragment {
             Utils.getInstance().signOut(this.requireActivity());
             return view;
         }
+
         fillFragmentAndTitle();
         setting(view);
 
@@ -70,13 +86,16 @@ public class CustomerFragment extends Fragment {
         listOfTitles.add("Home");
         listOfTitles.add("Chat");
         listOfTitles.add("Measurements");
+        listOfTitles.add("Orders");
 
         listOfFragments.add(new CustomerHomeFragment());
         listOfFragments.add(new CustomerChatFragment());
         listOfFragments.add(new CustomerMeasurementFragment());
+        listOfFragments.add(new CustomerOrdersFragment());
     }
 
     private void setting(View view) {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
         viewPager = view.findViewById(R.id.view_pager_customer);
         tabs = view.findViewById(R.id.tabs_customer);
         sectionsPagerAdapter = new SectionsPagerAdapter(this.requireActivity(), this.requireActivity().getSupportFragmentManager());
@@ -131,4 +150,9 @@ public class CustomerFragment extends Fragment {
 //                .addToBackStack(null)
 //                .commit();
 //    }
+
+
+
+
+
 }

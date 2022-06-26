@@ -19,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
     private final String TAG = ProfileActivity.class.getSimpleName();
-    TextView tvUsername, tvAbout, tvType, tvPhone, tvEmail;
+    TextView tvUsername, tvAbout, tvType, tvPhone, tvEmail,tvEmailBottom;
     CircleImageView civProfilePic;
 
     User user;
@@ -28,8 +28,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        // UserUtilsl utils =  new UserUtils();
         user = UsersUtils.getInstance(this).fetchUser();
         if (user == null) {
             Toast.makeText(this, "Something wrong!", Toast.LENGTH_SHORT).show();
@@ -48,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvAbout = findViewById(R.id.tv_profile_about);
         tvType = findViewById(R.id.tv_profile_type);
         tvEmail = findViewById(R.id.tv_profile_email);
+        tvEmailBottom = findViewById(R.id.tv_email_bottom);
         tvPhone = findViewById(R.id.tv_profile_phone);
     }
 
@@ -62,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
             tvType.setText("(" + user.getType() + ")");
             tvPhone.setText(user.getContact());
             tvEmail.setText(user.getEmail());
+            tvEmailBottom.setText(user.getEmail());
         }
     }
 }

@@ -50,17 +50,9 @@ public class OrderActivity extends AppCompatActivity {
         listOfTitles = new ArrayList<>();
 
         listOfTitles.add(Const.ORDER_STATUS_PENDING);
-        listOfTitles.add(Const.ORDER_STATUS_ACCEPTED);
-        listOfTitles.add(Const.ORDER_STATUS_STARTED);
-        listOfTitles.add(Const.ORDER_STATUS_SUIT_COMPLETED);
-        listOfTitles.add(Const.ORDER_STATUS_SHIPPED);
         listOfTitles.add(Const.ORDER_STATUS_COMPLETED);
 
         listOfFragments.add(new OrdersFragment(Const.ORDER_STATUS_PENDING));
-        listOfFragments.add(new OrdersFragment(Const.ORDER_STATUS_ACCEPTED));
-        listOfFragments.add(new OrdersFragment(Const.ORDER_STATUS_STARTED));
-        listOfFragments.add(new OrdersFragment(Const.ORDER_STATUS_SUIT_COMPLETED));
-        listOfFragments.add(new OrdersFragment(Const.ORDER_STATUS_SHIPPED));
         listOfFragments.add(new OrdersFragment(Const.ORDER_STATUS_COMPLETED));
     }
 

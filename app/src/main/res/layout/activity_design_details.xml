@@ -14,6 +14,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <include
+                android:id="@+id/inc_dd_header"
+                layout="@layout/design_details_header" />
+
+            <include
+                android:id="@+id/inc_dd_design"
+                layout="@layout/design_details_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inc_dd_header" />
+
+            <include
+                android:id="@+id/inc_dd_measurements"
+                layout="@layout/design_details_measurements_available"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inc_dd_design"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="5dp" />
+
+            <include
+                android:id="@+id/inc_dd_tailor_details"
+                layout="@layout/design_details_tailor_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inc_dd_measurements"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="5dp" />
         </RelativeLayout>
 
     </ScrollView>
@@ -25,6 +57,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
+        android:background="@drawable/bg_btn_place_order"
         android:gravity="center"
         android:padding="10dp"
         android:text="Place order"

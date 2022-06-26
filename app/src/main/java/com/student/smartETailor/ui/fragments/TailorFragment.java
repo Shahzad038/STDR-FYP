@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.student.smartETailor.R;
 import com.student.smartETailor.models.User;
+import com.student.smartETailor.ui.AddMeasurementsActivity;
+import com.student.smartETailor.ui.ConversationActivity;
 import com.student.smartETailor.ui.OrderActivity;
 import com.student.smartETailor.ui.Tailor.TailorDesignsActivity;
 import com.student.smartETailor.ui.Tailor.TailorMeasurementsActivity;
@@ -56,7 +58,7 @@ public class TailorFragment extends Fragment {
         });
 
         llChat.setOnClickListener(view -> {
-            AlerterUtils.getInstance().notImplemented(this.requireActivity());
+            startActivity(new Intent(this.requireActivity(), ConversationActivity.class));
         });
 
         llDesgins.setOnClickListener(view -> {

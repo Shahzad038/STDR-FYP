@@ -21,6 +21,11 @@ public class RiderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer, container, false);
+        user = UsersUtils.getInstance(this.getContext()).fetchUser();
+        if (user.getUID().equals("") || user.getType().equals("")) {
+            Utils.getInstance().signOut(this.requireActivity());
+            return view;
+        }
         setting(view);
         updateUI();
         return view;

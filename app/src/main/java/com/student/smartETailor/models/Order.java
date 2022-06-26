@@ -6,6 +6,7 @@ public class Order {
     private String note;
     private String tailorID, designID;
 
+    private Ship ship;
 
     private Review reviewProduct, reviewRider, reviewTailor;
 
@@ -18,11 +19,27 @@ public class Order {
         note = "";
         tailorID = "";
         designID = "";
+        ship = new Ship();
         reviewProduct = new Review();
         reviewRider = new Review();
         reviewTailor = new Review();
     }
 
+    public Order(String orderID, String name, String price, String status, Measurement measurement, String note,
+                 String tailorID, String designID, Ship ship, Review reviewProduct, Review reviewRider, Review reviewTailor) {
+        this.orderID = orderID;
+        this.name = name;
+        this.price = price;
+        this.status = status;
+        this.measurement = measurement;
+        this.note = note;
+        this.tailorID = tailorID;
+        this.designID = designID;
+        this.ship = ship;
+        this.reviewProduct = reviewProduct;
+        this.reviewRider = reviewRider;
+        this.reviewTailor = reviewTailor;
+    }
 
     public String getOrderID() {
         return orderID;
@@ -86,6 +103,14 @@ public class Order {
 
     public void setDesignID(String designID) {
         this.designID = designID;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     public Review getReviewProduct() {

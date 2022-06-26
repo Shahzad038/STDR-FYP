@@ -8,6 +8,16 @@ public class Design  implements Serializable {
     private ArrayList<Measurement> measurements;
     private boolean customization;
     private String price;
+    private String culture;
+
+    public String getCulture() {
+        return culture;
+    }
+
+    public void setCulture(String culture) {
+        this.culture = culture;
+    }
+
     private ArrayList<String> designs;
 
     private ArrayList<String> orders;

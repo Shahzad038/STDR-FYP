@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,7 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.student.smartETailor.constants.Const;
+import com.student.smartETailor.interfaces.ConversationsInterface;
 import com.student.smartETailor.interfaces.DesignPictureUploadingInterface;
+import com.student.smartETailor.models.Conversation;
 import com.student.smartETailor.models.Design;
 import com.student.smartETailor.models.Measurement;
 import com.student.smartETailor.models.User;
@@ -91,6 +94,30 @@ public class FBUtils {
             }
         });
 
+    }
+
+    public void fetchConversations(String UID, ConversationsInterface conversationsInterface) {
+        FirebaseDatabase.getInstance()
+                .getReference(Const.DB_USERS)
+                .child(UID)
+                .child(Const.DB_CONVERSATIONS)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ArrayList<Conversation> list = new ArrayList<>();
+                        for (DataSnapshot snapUCID : snapshot.getChildren()) {
+                            Conversation conversation = snapUCID.getValue(Conversation.class);
+                            list.add(conversation);
+                        }
+                        conversationsInterface.onConversationsReceived(list);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e(TAG, error.toString());
+                        conversationsInterface.onError(error.toString());
+                    }
+                });
     }
 
 }

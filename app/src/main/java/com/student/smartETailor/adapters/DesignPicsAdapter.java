@@ -1,6 +1,9 @@
 package com.student.smartETailor.adapters;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.student.smartETailor.R;
+import com.student.smartETailor.models.Design;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.ArrayList;
 
@@ -34,7 +39,7 @@ public class DesignPicsAdapter extends RecyclerView.Adapter<DesignPicsAdapter.My
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DesignPicsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.template_add_design, parent, false));
     }
 

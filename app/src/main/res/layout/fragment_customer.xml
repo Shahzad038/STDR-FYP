@@ -19,8 +19,10 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/white"
             app:tabIndicatorGravity="top"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:tabIndicatorHeight="3dp"
             app:tabMode="fixed"
+            app:tabTextAppearance="@style/tab_text"
             app:tabTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 

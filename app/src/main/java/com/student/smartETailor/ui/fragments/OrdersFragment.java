@@ -13,15 +13,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.student.smartETailor.R;
 import com.student.smartETailor.adapters.OrderAdapter;
 import com.student.smartETailor.constants.Const;
 import com.student.smartETailor.models.Order;
+import com.student.smartETailor.models.OrderModel;
 import com.student.smartETailor.models.User;
+import com.student.smartETailor.utils.UsersUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,7 @@ public class OrdersFragment extends Fragment {
 
     RecyclerView RV;
     LinearLayoutManager layoutManager;
-    ArrayList<Order> list;
+    ArrayList<OrderModel> list;
     OrderAdapter adapter;
     LinearLayout LL_NA;
     SpinKitView spinKitView;
@@ -53,7 +57,43 @@ public class OrdersFragment extends Fragment {
     }
 
     private void fetchUserAndDisplay() {
+        Query query;
+        if (UsersUtils.getInstance(getActivity()).fetchUser().getType().equals("customer")) {
+            query = FirebaseDatabase.getInstance()
+                    .getReference(Const.DB_ORDERS).orderByChild("customerId")
+                    .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        } else if (UsersUtils.getInstance(getActivity()).fetchUser().getType().equals("tailor")) {
+            query = FirebaseDatabase.getInstance()
+                    .getReference(Const.DB_ORDERS).orderByChild("tailorId")
+                    .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        } else {
+            query = FirebaseDatabase.getInstance()
+                    .getReference(Const.DB_ORDERS);
+        }
 
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                spinKitView.setVisibility(View.GONE);
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    OrderModel orderModel = snap.getValue(OrderModel.class);
+                    if (orderModel.getStatus().equalsIgnoreCase(orderType)) {
+                        list.add(orderModel);
+                    }
+
+                }
+
+                resetAdapter();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, error.toString());
+                spinKitView.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void resetAdapter() {

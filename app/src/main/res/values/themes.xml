@@ -96,4 +96,8 @@
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:minWidth">250dp</item>
     </style>
+
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/poppinsregular</item>
+    </style>>
 </resources>
